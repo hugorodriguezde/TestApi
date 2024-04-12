@@ -2,15 +2,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config();
+
 
 // Initialize Express app
 const app = express();
-
+const env = process.env.PORT || 5000;
 // Use body-parser middleware to parse JSON bodies
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect(`mongodb+srv://api-enjoyer:FaP9V2ybNr0tMB7S@cluster0.vt8hlie.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
